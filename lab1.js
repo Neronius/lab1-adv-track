@@ -54,7 +54,8 @@ assert(1 === 2, 'this is an assertion failure example. 1 === 2');
  it failed.
 */
 
-//your code goes here
+assert('monkey' === 'monkey');
+assert('monkey' === 'tarantula', 'Far too many legs, my friend. Try again.');
 
 /* ----------------- Meerkats -------------------------------------------------
  Meerkats make a sort of chirping noise (according to my 30 seconds of
@@ -72,7 +73,24 @@ var sentence2 = 'Come over here so you can scratch my belly.';
  HINT: the 'split' method on String will be useful.
 */
 
-//your code goes here
+sentence1 = sentence1.split(' ');
+sentence2 = sentence2.split(' ');
+
+for (var i = 0;i < sentence1.length;i++) {
+  sentence1[i] = 'chirp';
+}
+
+sentence1 = sentence1.join(' ') + '.';
+
+var i = 0;
+while (i < sentence2.length) {
+  sentence2[i] = 'chirp';
+  i++;
+}
+sentence2 = sentence2.join(' ') + '.';
+
+console.log(sentence1);
+console.log(sentence2);
 
 assert(sentence1 === 'chirp chirp chirp.', 'sentence 1 should have 3 chirps');
 assert(sentence2 === 'chirp chirp chirp chirp chirp chirp chirp chirp chirp.',
@@ -85,13 +103,13 @@ assert(sentence2 === 'chirp chirp chirp chirp chirp chirp chirp chirp chirp.',
  Hint: read the Math.random description on MDN.
 */
 
-var favoriteAnimals = ['elephant', 'penguin', 'eagle', 'camel'];
+var favoriteAnimals = [ 'elephant', 'penguin', 'eagle', 'camel' ];
 var nextAnimal;
 
 // TODO: 12 points
 // Assign one of your favorite animals to nextAnimal using Math.random() to pick
 
-// your code goes here
+nextAnimal = favoriteAnimals[(Math.floor(Math.random() * favoriteAnimals.length))];
 
 assert(nextAnimal, 'assign something to nextAnimal');
 
@@ -106,19 +124,27 @@ assert(nextAnimal, 'assign something to nextAnimal');
 */
 
 // number of times the new caretaker fed the lion. one array entry per day
-var mealsPerDay = [5, 4, 3, 6, 2, 4, 3, 4, 5, 1];
+var mealsPerDay = [ 5, 4, 3, 6, 2, 4, 3, 4, 5, 1 ];
 var tooHungryDay;
 
-/*
- TODO: 20 points
- Cycle through the days in mealsPerDay. At each day, print out the average
- number of meals/day the lion got since the new caretaker started.
- tooHungryDay should receive the number of days before the lion started
- pondering protein supplements (the first day the average dips below 4
- meals)
-*/
+var mealsTotal = 0;
+var avgMealsDay = Math.round(mealsTotal / (i + 1) * 100) / 100;
+var avgMealsDayArr = [];
 
-// your code goes here
+for (var i = 0; i < mealsPerDay.length; i++) {
+  mealsTotal += mealsPerDay[i];
+  avgMealsDay = Math.round(mealsTotal / (i + 1) * 100) / 100;
+  avgMealsDayArr.push(avgMealsDay);
+
+  console.log('The lion has eaten ' + avgMealsDay + ' meals on average.');
+}
+
+for (var i = 0; i < avgMealsDayArr.length; i++) {
+  if (avgMealsDayArr[i] < 4) {
+    tooHungryDay = i;
+    break;
+  }
+}
 
 assert(tooHungryDay, 'remember to assign the answer to tooHungryDay');
 assert(tooHungryDay < 10, 'the lion is too hungry before the end of the array');
